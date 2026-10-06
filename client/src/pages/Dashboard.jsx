@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
+import { AuthContext } from '../context/AuthContext';
 
 const Dashboard = () => {
+  const { user } = useContext(AuthContext);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -30,6 +32,7 @@ const Dashboard = () => {
 
   return (
     <div className="container">
+      <h2 style={{ marginBottom: '1rem', color: '#3498db' }}>Hi, {user?.name} 👋</h2>
       <div className="flex justify-between align-center mb-2">
         <h2>Dashboard</h2>
         <Link to="/products/new" className="btn btn-primary">+ Add Product</Link>
